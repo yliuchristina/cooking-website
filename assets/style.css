@@ -96,7 +96,7 @@ header nav i {
     padding: 0 0.2em;
 }
 header .logo {
-    height: 3.6em;
+    height: 3.9em;
     padding-right: 0.1em;
 }
 h1 {
@@ -105,7 +105,7 @@ h1 {
     line-height: 1.2;
 }
 h1 sup {
-    font-size: 0.64rem;
+/*    font-size: 0.64rem;*/
     vertical-align: text-top;
     color: orange;
     margin-left: -0.1rem;
