@@ -112,6 +112,15 @@ h1 sup {
     margin-left: -0.1rem;
     line-height: 1.6;
 }
+
+a sup {
+/*    font-size: 0.64rem;*/
+    vertical-align: text-top;
+    color: orange;
+    margin-left: -0.1rem;
+    line-height: 1.6;
+}
+
 h1 em {
     color: var(--original-title);
     font-size: 1.4rem;  /* to match x-height of heading */
