@@ -1,4 +1,5 @@
 #!/bin/bash
+pipenv install
 echo "Setting up recipes"
 echo "slugify the jpg and mv them in case cooklang parser not do so"
 rm -rf _temp _recipes
