@@ -35,10 +35,12 @@ jobs:
           
       - name: Install dependencies
         run: |
+          sudo apt install fonts-noto-cjk fonts-arphic-ukai fonts-arphic-uming
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install pipenv
           pipenv install
           npm install -g puppeteer-cli
+          pipenv --version && puppeteer --version
           
       - name: Build cooklang recipes
         run: bash cooklang2nyum.sh
