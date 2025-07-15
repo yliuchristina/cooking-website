@@ -35,7 +35,7 @@ jobs:
           
       - name: Install dependencies
         run: |
-          sudo apt install fonts-noto-cjk fonts-arphic-ukai fonts-arphic-uming
+          sudo apt install -y fonts-noto-cjk fonts-arphic-ukai fonts-arphic-uming
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install pipenv
           pipenv install
