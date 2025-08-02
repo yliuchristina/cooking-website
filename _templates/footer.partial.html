@@ -1,0 +1,38 @@
+<footer>
+    <p>$strings.footer_text$</p>
+    <p class="updatededit">
+        $strings.updated_on$ $updatedtime$
+        $if(title)$
+            $if(github_url)$
+                ·
+                <a href="$github_url$/blob/main/cooklang_recipes/$title$.cook">$strings.edit$</a>
+            $endif$
+        $endif$
+    </p>
+
+    <!-- Start Google Translate -->
+    <div style="text-align: center;" id="google_translate_element"></div>
+  
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    autoDisplay: false,
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                },
+                'google_translate_element'
+            );
+        }
+    </script>
+  
+    <script type="text/javascript"
+            src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+    <!-- End Google Translate -->
+    <!-- visiter counter -->
+    $if(production)$
+        <p class=updatededit>Visiter Counts: <script type="text/javascript" src="//counter.websiteout.com/js/21/10/0/0"></script></p>
+    $endif$
+    <br/>
+    <br/>
+</footer>

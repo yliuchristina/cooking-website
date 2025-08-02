@@ -1,0 +1,63 @@
+name: Build the website
+on:
+  push:
+      branches:
+        - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-the-website:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+        node-version: ["20"]
+    env:
+      TERM: xterm
+      TZ: America/Los_Angeles
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python ${{ matrix.python-version }} 🐍
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Set up Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Install dependencies
+        run: |
+          sudo apt install -y fonts-noto-cjk fonts-arphic-ukai fonts-arphic-uming
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install pipenv
+          pipenv install
+          npm install -g puppeteer-cli
+          pipenv --version && puppeteer --version
+          
+      - name: Build cooklang recipes
+        run: bash cooklang2nyum.sh
+          
+      - name: Install and Build 🔧
+        run: |
+          echo "production: yes" >> config.yaml
+          wget -nv -O pandoc.deb https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-1-amd64.deb
+          sudo dpkg -i pandoc.deb
+          bash build.sh
+          bash build_pdf.sh false
+          cp -v .nojekyll _site
+          cp -v CNAME _site
+          echo "Build complete"
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: gh-pages  # The branch the action should deploy to. Has to be specified in the repo's settings.
+          folder: _site     # The folder the action should deploy from.
